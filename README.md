@@ -1,4 +1,4 @@
-***🧩 LeetCode Solutions: The Quest for Coding Glory 🚀***
+***🧩 LeetCode Solutions: The Quest for Coding Glory 🚀*** <br>
 Welcome to my LeetCode Solutions repository, where algorithms meet adventure and data structures dance with delight! 🎉<br>
 
 🎯 Mission Statement<br>
