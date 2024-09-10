@@ -1,0 +1,32 @@
+class Solution {
+public:
+
+    bool find(int mid, vector<int>&nums, int threshold){
+        int sum=0;
+        for(int i=0; i<nums.size(); i++){
+            sum+=(nums[i]+mid-1)/mid;
+        }
+        if(sum<=threshold) return true;
+        return false;
+    }
+
+    int smallestDivisor(vector<int>& nums, int threshold) {
+        int n=nums.size();
+        int ans=1;
+        sort(nums.begin(),nums.end());
+        int start=1;
+        int end=nums[n-1];
+        while(start<=end){
+            int mid=start+(end-start)/2;
+            bool flag=find(mid,nums,threshold);
+            if(flag){
+                ans=mid;
+                end=mid-1;
+            }
+            else{
+                start=mid+1;
+            }
+        }
+        return ans;
+    }
+};
