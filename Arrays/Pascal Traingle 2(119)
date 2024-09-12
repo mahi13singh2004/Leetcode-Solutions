@@ -1,0 +1,15 @@
+class Solution {
+public:
+    vector<int> getRow(int r) {
+        r=r+1;
+        long long ans=1;
+        vector<int>answer;
+        answer.push_back(ans);
+        for(int c=1; c<r; c++){
+            ans=ans*(r-c);
+            ans=ans/c;
+            answer.push_back(ans);
+        }
+        return answer;
+    }
+};
