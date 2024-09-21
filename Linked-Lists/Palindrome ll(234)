@@ -1,0 +1,33 @@
+class Solution {
+public:
+    ListNode* rvrse(ListNode* temp){
+        ListNode* prev=nullptr;
+        while(temp){
+            ListNode* front=temp->next;
+            temp->next=prev;
+            prev=temp;
+            temp=front;
+        }
+        return prev;
+    }
+
+    bool isPalindrome(ListNode* head) {
+        ListNode* fast=head;
+        ListNode* slow=head;
+        while(fast->next && fast->next->next){
+            fast=fast->next->next;
+            slow=slow->next;
+        }
+        ListNode* new_head=rvrse(slow->next);
+        slow=head;
+        while(new_head){
+            if(slow->val!=new_head->val){
+                return false;
+            }
+            slow=slow->next;
+            new_head=new_head->next;
+        }
+
+        return true;
+    }
+};
