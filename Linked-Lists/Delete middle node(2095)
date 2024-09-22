@@ -1,0 +1,15 @@
+Node* deleteMid(Node* head) {
+        if(head==nullptr || head->next==nullptr) return nullptr;
+        Node* fast=head;
+        Node* slow=head;
+        fast=fast->next->next;
+        while(fast && fast->next){
+            fast=fast->next->next;
+            slow=slow->next;
+        }
+        
+        Node* temp=slow->next;
+        slow->next=slow->next->next;
+        delete temp;
+        return head;
+    }
