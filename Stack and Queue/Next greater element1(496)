@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        map<int,int>mpp;
+        stack<int>st;
+        for(int i=nums2.size()-1; i>=0; i--){
+            int no=nums2[i];
+            while(!st.empty() && st.top()<=no){
+                st.pop();
+            }
+            if(st.empty()){
+                mpp[no]=-1;
+            }
+            else{
+                mpp[no]=st.top();
+            }
+            st.push(no);
+        }
+
+        vector<int>ans;
+        for(int num:nums1){
+            ans.push_back(mpp[num]);
+        }
+
+        return ans;
+    }
+};
