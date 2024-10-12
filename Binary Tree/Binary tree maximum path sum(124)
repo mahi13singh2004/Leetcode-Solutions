@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int find(TreeNode* root, int &sum){
+        if(root==nullptr) return 0;
+        int left=max(0,find(root->left,sum));
+        int right=max(0,find(root->right,sum));
+        sum=max(sum,left+right+root->val);
+        return root->val + max(left,right);
+    }
+
+    int maxPathSum(TreeNode* root) {
+        int sum=INT_MIN;
+        int ans=find(root,sum);
+        return sum;
+    }
+};
