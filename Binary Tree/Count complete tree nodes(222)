@@ -1,0 +1,31 @@
+class Solution {
+public:
+
+    int find1(TreeNode* root){
+        int h=0;
+        while(root){
+            h++;
+            root=root->left;
+        }
+        return h;
+    }
+
+    int find2(TreeNode* root){
+        int h=0;
+        while(root){
+            h++;
+            root=root->right;
+        }
+        return h;
+    }
+
+    int countNodes(TreeNode* root) {
+        if(root==nullptr) return 0;
+        int lh=find1(root);
+        int rh=find2(root);
+        if(lh==rh){
+            return (1<<lh)-1;
+        }
+        return 1+countNodes(root->left)+countNodes(root->right);
+    }
+};
