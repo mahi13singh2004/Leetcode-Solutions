@@ -1,0 +1,48 @@
+class Solution {
+public:
+    TreeNode* find(TreeNode* root){
+        if(root->left==nullptr){
+            return root->right;
+        }
+        else if(root->right==nullptr){
+            return root->left;
+        }
+        TreeNode* rightChild=root->right;
+        TreeNode* lastRight=root->left;
+        while(lastRight->right){
+            lastRight=lastRight->right;
+        }
+        lastRight->right=rightChild;
+        return root->left;
+    }
+
+    TreeNode* deleteNode(TreeNode* root, int key) {
+        if(root==nullptr) return root;
+        if(root->val==key){
+            return find(root);
+        }
+
+        TreeNode* dummy=root;
+        while(root){
+            if(root->val >= key){
+                if(root->left && root->left->val==key){
+                    root->left=find(root->left);
+                    break;
+                }
+                else{
+                    root=root->left;
+                }
+            }
+            else{
+                if(root->right && root->right->val==key){
+                    root->right=find(root->right);
+                    break;
+                }
+                else{
+                    root=root->right;
+                }
+            }
+        }
+        return dummy;
+    }
+};
