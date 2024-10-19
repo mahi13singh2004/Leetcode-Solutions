@@ -1,0 +1,15 @@
+class Solution {
+public:
+    TreeNode* find(int &i, vector<int>arr, int maxi){
+        if(i==arr.size() || arr[i]>maxi) return nullptr;
+        TreeNode* root=new TreeNode(arr[i++]);
+        root->left=find(i,arr,root->val);
+        root->right=find(i,arr,maxi);
+        return root;
+    }
+
+    TreeNode* bstFromPreorder(vector<int>&arr) {
+        int i=0;
+        return find(i,arr,INT_MAX);
+    }
+};
