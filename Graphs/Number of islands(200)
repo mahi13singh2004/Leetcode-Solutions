@@ -1,0 +1,48 @@
+class Solution {
+public:
+
+    void bfs(int ogrow, int ogcol, vector<vector<int>>&vis, vector<vector<char>>&grid){
+        int rows=grid.size();
+        int cols=grid[0].size();
+        vis[ogrow][ogcol]=1;
+        queue<pair<int,int>>q;
+        q.push({ogrow,ogcol});
+
+        while(!q.empty()){
+            int r=q.front().first;
+            int c=q.front().second;
+            q.pop();
+
+            for(int i=-1; i<=1; i++){
+                for(int j=-1; j<=1; j++){
+                    if(abs(i)+abs(j)==1){
+                        int row1=r+i;
+                        int col1=c+j;
+                        if(row1>=0 && row1<rows && col1>=0 && col1<cols && grid[row1][col1]=='1' && !vis[row1][col1]){
+                            vis[row1][col1]=1;
+                            q.push({row1,col1});
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    int numIslands(vector<vector<char>>& grid) {
+        int row=grid.size();
+        int col=grid[0].size();
+        vector<vector<int>>vis(row,vector<int>(col,0));
+
+        int cnt=0;
+
+        for(int i=0; i<row; i++){
+            for(int j=0; j<col; j++){
+                if(!vis[i][j] && grid[i][j]=='1'){
+                    cnt++;
+                    bfs(i,j,vis,grid);
+                }
+            }
+        }
+        return cnt;
+    }
+};
